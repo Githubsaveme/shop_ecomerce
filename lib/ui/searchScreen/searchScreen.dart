@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_ecomerce/utils/common.dart';
+import 'package:shop_ecomerce/utils/commonThings.dart';
 
 import '../../controller/controllerLogic.dart';
 
@@ -70,7 +71,7 @@ class SearchScreen extends StatelessWidget {
             ),
             Obx(() {
               if (searchCn.isLoading.value == false) {
-                return const CircularProgressIndicator();
+                return showLoader();
               }
               return searchCn.searchCategoryList.isNotEmpty
                   ? ListView.builder(

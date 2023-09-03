@@ -1,5 +1,4 @@
 const baseUrl = "https://dummyjson.com/";
-const mapUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 const headerKey = "Authorization";
 
 const productUrl = "products/";
@@ -11,3 +10,6 @@ const productSearchReq = 3;
 
 const productCategoryUrl = "products/categories";
 const productCategoryReq = 4;
+
+const productCategoryByName = 'products/category/';
+const productCategoryByNameReq = 5;

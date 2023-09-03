@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'common.dart';
 
@@ -83,7 +84,8 @@ AppBar commonAppBar({
                           imageUrl: secondActionImage,
                           placeholder: (context, url) =>
                               const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => CircleAvatar(
+                          errorWidget: (context, url, error) =>
+                              const CircleAvatar(
                             backgroundColor: Colors.grey,
                             child: Text(
                                 "data"), /* Text(
@@ -102,5 +104,12 @@ AppBar commonAppBar({
             )
           : Container()
     ],
+  );
+}
+
+Widget showLoader() {
+  return const SpinKitChasingDots(
+    color: Colors.grey,
+    size: 50.0,
   );
 }

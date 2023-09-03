@@ -3,8 +3,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_ecomerce/ui/productCategory/productCategory.dart';
 import 'package:shop_ecomerce/ui/productDetailScreen/produtDetailScreen.dart';
 import 'package:shop_ecomerce/utils/common.dart';
+import 'package:shop_ecomerce/utils/commonThings.dart';
 import '../../controller/controllerLogic.dart';
 import '../searchScreen/searchScreen.dart';
 
@@ -48,7 +50,9 @@ class HomeScreen extends StatelessWidget {
                     width: size.width * 0.04,
                   ),
                   InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => ProductCategoryScreen());
+                      },
                       child: Container(
                         width: size.width * 0.09,
                         height: size.width * 0.09,
@@ -227,8 +231,8 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         body: Obx(() {
-          if (controller.isLoading.value == false) {
-            return const Center(child: CircularProgressIndicator());
+          if (controller.isLoading.value == true) {
+            return showLoader();
           }
           return SingleChildScrollView(
             child: Column(
@@ -253,8 +257,8 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontSize: size.width * 0.05))),
                 dottedWidget(size),
-                topWidget(),
-                bottomWidget(),
+               // topWidget(),
+                //bottomWidget(),
               ],
             ),
           );

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_ecomerce/UI/searchScreen/searchScreen.dart';
@@ -57,10 +55,10 @@ class ProductDetailScreen extends StatelessWidget {
             )
           ],
         ),
-        Obx(() {
-          /*if (detailCon.isLoading.value) {
+      /*  Obx(() {
+          if (detailCon.is.value == false) {
             return CircularProgressIndicator();
-          }*/
+          }
           return SliverList(
               delegate: SliverChildListDelegate([
             SingleChildScrollView(
@@ -96,7 +94,7 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             )
           ]));
-        })
+        })*/
       ],
     );
   }

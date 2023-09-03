@@ -9,7 +9,7 @@ import '../utils/networkClass/WebUrl.dart';
 
 class MyController extends GetxController implements NetworkResponse {
   List<ProductModel> categoryList = [];
-  var isLoading = false.obs;
+  var isLoading = true.obs;
 
   @override
   void onInit() {
@@ -44,8 +44,8 @@ class MyController extends GetxController implements NetworkResponse {
         var dataModel = data['products'] as List;
         categoryList = dataModel.map((e) => ProductModel.fromJson(e)).toList();
         debugPrint(categoryList.length.toString());
-        isLoading(true);
-        update();
+        isLoading(false);
+
         break;
     }
   }
@@ -53,7 +53,7 @@ class MyController extends GetxController implements NetworkResponse {
 
 class DetailController extends GetxController implements NetworkResponse {
   late ProductModel productDetailModel;
-  var isLoading = false.obs;
+  var isLoading = true.obs;
 
   void callGetProductDetail(String value) {
     DioNetworkClass.fromNetworkClass(
@@ -82,8 +82,7 @@ class DetailController extends GetxController implements NetworkResponse {
         debugPrint('productDetailReq-success:- $data');
         productDetailModel = ProductModel.fromJson(data);
         debugPrint(productDetailModel.toString());
-        isLoading(true);
-        update();
+        isLoading(false);
         break;
     }
   }
@@ -123,6 +122,81 @@ class SearchCon extends GetxController implements NetworkResponse {
         debugPrint(newList.length.toString());
         searchCategoryList.assignAll(newList);
 
+        break;
+    }
+  }
+}
+
+class CategoryController extends GetxController implements NetworkResponse {
+  var isLoading = true.obs;
+  List categoryList = <String>[].obs;
+  List<ProductModel> categoryByNameList = [];
+  var showData = false.obs;
+
+  @override
+  void onInit() {
+    callGetCategory();
+    super.onInit();
+  }
+
+  void callGetCategory() {
+    DioNetworkClass.fromNetworkClass(
+        endUrl: productCategoryUrl,
+        networkResponse: this,
+        requestCode: productCategoryReq,
+        jsonBody: {}).callRequestServiceHeader(false, "get");
+  }
+
+  void callGetCategoryByName(String value) {
+    DioNetworkClass.fromNetworkClass(
+        endUrl: productCategoryByName + value,
+        networkResponse: this,
+        requestCode: productCategoryByNameReq,
+        jsonBody: {}).callRequestServiceHeader(false, "get");
+  }
+
+  @override
+  void onApiError({required int requestCode, required String response}) {
+    switch (requestCode) {
+      case productCategoryReq:
+        var data = jsonDecode(response);
+        debugPrint('productCategoryReq-error:- $data');
+        Get.snackbar('Shop Ecom', data['message'].toString());
+        break;
+      case productCategoryByNameReq:
+        var data = jsonDecode(response);
+        debugPrint('productCategoryReq-error:- $data');
+        Get.snackbar('Shop Ecom', data['message'].toString());
+        break;
+    }
+  }
+
+  @override
+  void onResponse({required int requestCode, required String response}) {
+    switch (requestCode) {
+      case productCategoryReq:
+        var data = jsonDecode(response);
+        var dataModal = data as List;
+        // var newList = dataModel.map((e) => ProductModel.fromJson(e)).toList();
+        debugPrint(data.length.toString());
+        for (var e in dataModal) {
+          debugPrint(e.toString());
+          categoryList.add(e.toString());
+        }
+        isLoading(false);
+        break;
+
+      case productCategoryByNameReq:
+        var data = jsonDecode(response);
+        debugPrint('productCategoryByNameReq-success:- $data');
+        var dataModel = data['products'] as List;
+        categoryByNameList.clear();
+        var categoryByName =
+            dataModel.map((e) => ProductModel.fromJson(e)).toList();
+        debugPrint(categoryByNameList.length.toString());
+        categoryByNameList.assignAll(categoryByName);
+        showData(true);
+        update();
         break;
     }
   }
