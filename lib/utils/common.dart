@@ -12,3 +12,5 @@ const vampireBlackColor = Color(0xFF090909);
 const littleOrangeYellowColor = Color(0xFFFFC746);
 const blueColor = Color(0xFF166BD4);
 const colorTheme = Color(0xFFFF5656);
+
+const String rupeeSymbol = "\u{20B9}";

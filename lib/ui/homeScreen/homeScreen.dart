@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_ecomerce/ui/cartScreen/cartScreen.dart';
 import 'package:shop_ecomerce/ui/productCategory/productCategory.dart';
 import 'package:shop_ecomerce/ui/productDetailScreen/produtDetailScreen.dart';
 import 'package:shop_ecomerce/utils/common.dart';
@@ -14,7 +15,6 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final controller = Get.put(MyController());
-  final detailsApiCall = Get.lazyPut(() => DetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,9 @@ class HomeScreen extends StatelessWidget {
                     width: size.width * 0.04,
                   ),
                   InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => CartScreen());
+                      },
                       child: Container(
                         width: size.width * 0.09,
                         height: size.width * 0.09,
@@ -257,7 +259,7 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontSize: size.width * 0.05))),
                 dottedWidget(size),
-               // topWidget(),
+                // topWidget(),
                 //bottomWidget(),
               ],
             ),
@@ -298,7 +300,7 @@ class HomeScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: size.width * 0.02),
+              SizedBox(height: size.width * 0.01),
               SizedBox(
                 width: size.width * 0.15,
                 child: Text(
@@ -383,6 +385,8 @@ class HomeScreen extends StatelessWidget {
                 onTap: () {
                   Get.to(() => ProductDetailScreen(),
                       arguments: controller.categoryList[index].id);
+                  controller
+                      .callGetProductDetail(controller.categoryList[index].id!);
                 },
                 child: DottedBorder(
                     padding: EdgeInsets.zero,

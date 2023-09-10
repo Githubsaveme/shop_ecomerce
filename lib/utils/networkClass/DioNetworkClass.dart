@@ -54,7 +54,6 @@ class DioNetworkClass {
       dio.options.receiveTimeout = const Duration(seconds: 90);
       dio.options.contentType = Headers.jsonContentType;
 
-
       debugPrint("${requestType}Url: ${baseUrl + endUrl}");
 
       if (requestType == "get" && jsonBody.isNotEmpty) {
@@ -133,7 +132,7 @@ class DioNetworkClass {
         ),
       ),
     );
-    await getObj.Get.defaultDialog(title: "dialog");
+    await getObj.Get.defaultDialog(title: "Shop Eco");
   }
 
   Future<void> showPercentageLoaderDialog(
@@ -186,8 +185,6 @@ class DioNetworkClass {
       case 7:
         debugPrint("Internet Connection Error");
         getObj.Get.snackbar("Error", "Internet Connection Error");
-        Image.asset('assets/images/no_internet.gif');
-
 
         break;
 

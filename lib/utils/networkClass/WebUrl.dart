@@ -13,3 +13,9 @@ const productCategoryReq = 4;
 
 const productCategoryByName = 'products/category/';
 const productCategoryByNameReq = 5;
+
+const addCart = 'carts/add';
+const reqAddCart = 6;
+
+const showCart = 'carts/';
+const reqShowCart = 7;

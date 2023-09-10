@@ -12,6 +12,7 @@ class ProductCategoryScreen extends StatelessWidget {
 
   final categoryCon = Get.put(CategoryController());
 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -54,7 +55,7 @@ class ProductCategoryScreen extends StatelessWidget {
                     categoryCon.callGetCategoryByName(
                         categoryCon.categoryList[index].toString());
 
-                    categoryCon.showData.value ==true
+                    categoryCon.showData.value == true
                         ? Get.bottomSheet(
                             ListView.builder(
                                 shrinkWrap: true,
@@ -63,8 +64,10 @@ class ProductCategoryScreen extends StatelessWidget {
                                     categoryCon.categoryByNameList.length,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    width: size.width/1,
-                                    margin: EdgeInsets.symmetric(horizontal: size.width*0.05,vertical: size.width*0.05),
+                                    width: size.width / 1,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.05,
+                                        vertical: size.width * 0.05),
                                     child: DottedBorder(
                                         padding: EdgeInsets.zero,
                                         borderType: BorderType.RRect,
@@ -110,8 +113,8 @@ class ProductCategoryScreen extends StatelessWidget {
                                                           .title!,
                                                       maxLines: 1,
                                                       style: TextStyle(
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         fontSize:
                                                             size.width * 0.035,
                                                         color: Colors.black,
@@ -126,8 +129,8 @@ class ProductCategoryScreen extends StatelessWidget {
                                                           .description!,
                                                       maxLines: 1,
                                                       style: TextStyle(
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         fontSize:
                                                             size.width * 0.035,
                                                         color: Colors.grey,
@@ -166,9 +169,7 @@ class ProductCategoryScreen extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon:
-                              const Icon(Icons.fullscreen))
+                          onPressed: () {}, icon: const Icon(Icons.fullscreen))
                     ],
                   ),
                 ),
